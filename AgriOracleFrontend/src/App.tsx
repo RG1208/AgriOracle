@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Sprout } from 'lucide-react';
 import Navbar from './components/Navbar';
@@ -59,8 +59,8 @@ function App() {
               element={isAuthenticated ? <PriceForecasting /> : <Navigate to="/login" />}
             />
             <Route
-              path="/admin/*"
-              element={isAdmin ? <AdminDashboard /> : <Navigate to="/login" />}
+              path="/admin"
+              element={<AdminDashboard />}
             />
           </Routes>
         </main>
