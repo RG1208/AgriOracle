@@ -1,0 +1,64 @@
+.prediction-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+  }
+  
+  .prediction-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #2f4f3f;
+    margin-bottom: 1.5rem;
+  }
+  
+  .file-input {
+    display: block;
+    margin: 0 auto 1rem auto;
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .error-message {
+    color: red;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 1rem;
+  }
+  
+  .result-section {
+    margin-top: 2rem;
+    text-align: center;
+  }
+  
+  .prediction-image {
+    width: 300px;
+    border-radius: 0.5rem;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+  }
+  
+  .prediction-heading {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2f4f3f;
+    margin-top: 1rem;
+  }
+  
+  .prediction-info {
+    font-size: 1rem;
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+  
+  .processed-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    color: #2f4f3f;
+  }
+  

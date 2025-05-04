@@ -1,0 +1,140 @@
+/* Container styling */
+.recommendation-container {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #dcdcdc;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  /* Title */
+  .recommendation-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #2e7d32;
+    margin-bottom: 2rem;
+  }
+  
+  /* Form */
+  .recommendation-form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .recommendation-form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #2f4f3f;
+  }
+  
+  .recommendation-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+  }
+  
+  .recommendation-input:focus {
+    outline: none;
+    border-color: #81c784;
+  }
+  
+  /* Submit Button */
+  .recommendation-button {
+    display: block;
+    margin: 1rem auto 0;
+    padding: 0.75rem 1.5rem;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 5px 12px rgba(76, 175, 80, 0.3);
+  }
+  
+  .recommendation-button:hover {
+    background-color: #388e3c;
+    transform: scale(1.02);
+  }
+  
+  .recommendation-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  /* Error message */
+  .recommendation-error {
+    color: #c62828;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 1rem;
+  }
+  
+  /* Result Section */
+  .recommendation-result {
+    margin-top: 2rem;
+    text-align: center;
+    padding: 1.5rem;
+    background-color: #f1f8e9;
+    border: 1px solid #c5e1a5;
+    border-radius: 10px;
+    animation: fadeIn 0.6s ease-in-out;
+  }
+  
+  /* Animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Result Text */
+  .recommended-crop {
+    font-size: 1.4rem;
+    color: #33691e;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .recommendation-info {
+    font-size: 1rem;
+    color: #4e4e4e;
+    line-height: 1.6;
+  }
+  .recommendation-button {
+    display: block;
+    margin: 1.5rem auto 0;
+    padding: 0.75rem 2rem;
+    background: linear-gradient(135deg, #4caf50, #66bb6a);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+  
+  .recommendation-button:hover {
+    background: linear-gradient(135deg, #388e3c, #4caf50);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 16px rgba(56, 142, 60, 0.4);
+  }
+  
+  .recommendation-button:disabled {
+    background: #a5d6a7;
+    color: #f5f5f5;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+  
