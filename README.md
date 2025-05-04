@@ -14,8 +14,8 @@ cd AgriOracle
 
 #Setting up Frontend
 cd AgriOracleFrontend
-npm install
-npm start
+pnpm install
+npm run dev
 
 # Setting up backend
 python -m venv venv
