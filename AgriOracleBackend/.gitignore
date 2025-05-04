@@ -14,10 +14,6 @@ __pycache__/
 .ipynb_checkpoints/
 
 # TensorFlow model files
-*.pb
-*.h5
-*.onnx
-*.ckpt
 
 # Pytest
 .cache/
