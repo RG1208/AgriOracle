@@ -33,10 +33,13 @@ def allowed_file(filename):
 # Load models
 disease_model = load_model("all_3_classification_mobilenetv2.h5")
 rotation_model = tf.keras.models.load_model("crop_rotation_model.h5")
+intercrop_model = tf.keras.models.load_model("intercropping_model.h5")
 
 # Load encoders for crop rotation
 encoder = joblib.load("feature_encoder.pkl")
 y_encoder = joblib.load("label_encoder.pkl")
+intercrop_encoder = joblib.load("intercrop_encoder.pkl")
+intercrop_y_encoder = joblib.load("intercrop_label_encoder.pkl")
 
 # Class labels for disease detection
 disease_class_labels = [
@@ -170,6 +173,45 @@ def recommend_crop():
 
         if not reasoning:
             reasoning = "This crop maintains soil health and supports sustainable yield."
+
+        return jsonify({
+            "recommended_crop": predicted_crop,
+            "reasoning": reasoning
+        })
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/recommend_intercrop', methods=['POST'])
+def recommend_intercrop():
+    try:
+        data = request.get_json()
+        primary_crop = data.get("primary_crop", "").capitalize()
+        soil_type = data.get("soil_type", "").capitalize()
+        season = data.get("season", "").capitalize()
+
+        input_df = pd.DataFrame([[primary_crop, soil_type, season]], columns=["primary_crop", "soil_type", "season"])
+        input_encoded = intercrop_encoder.transform(input_df).toarray()
+        predicted_probs = intercrop_model.predict(input_encoded)
+        predicted_crop = intercrop_y_encoder.inverse_transform(predicted_probs).flatten()[0]
+
+        reasoning = ""
+        if primary_crop == "Maize":
+            reasoning += "Maize is a heavy feeder; intercropping with legumes like Soybean helps fix nitrogen. "
+        elif primary_crop == "Wheat":
+            reasoning += "Wheat can benefit from Mustard, which helps with weed suppression. "
+
+        if soil_type == "Clay":
+            reasoning += "Clay soil retains moisture, suitable for water-reliant crops like Soybean. "
+        elif soil_type == "Sandy":
+            reasoning += "Sandy soil drains quickly; Peas and similar crops can be ideal. "
+
+        if season == "Kharif":
+            reasoning += "Warm-season crops during Kharif favor legumes as intercrops. "
+        elif season == "Rabi":
+            reasoning += "Rabi season favors Mustard and other cool-season intercrops. "
+
+        if not reasoning:
+            reasoning = "Intercropping improves soil fertility, pest control, and yields."
 
         return jsonify({
             "recommended_crop": predicted_crop,
