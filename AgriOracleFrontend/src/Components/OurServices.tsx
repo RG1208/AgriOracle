@@ -1,4 +1,3 @@
-import React from 'react';
 import { Microscope, LineChart, Leaf } from 'lucide-react';
 import './OurServices.css'; // Make sure to create and import this CSS file
 
@@ -35,7 +34,7 @@ const OurServices = () => {
         <div className="service-item reverse">
           <div className="service-image">
             <img
-              src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+              src="https://res.cloudinary.com/dx2ttgkba/image/upload/v1747338835/crop_recommendation_pkpw59.png"
               alt="Crop Recommendation"
             />
           </div>
@@ -57,8 +56,8 @@ const OurServices = () => {
         <div className="service-item reverse">
           <div className="service-image">
             <img
-              src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
-              alt="Crop Recommendation"
+              src="https://res.cloudinary.com/dx2ttgkba/image/upload/v1746891561/AgriOracle_IMG_kg9qjf.jpg"
+              alt="Crop Intercropping"
             />
           </div>
           <div className="service-text">
