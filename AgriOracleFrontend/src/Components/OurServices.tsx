@@ -7,6 +7,8 @@ const OurServices = () => {
       <h1 className="title">Our Services</h1>
 
       <div className="services-wrapper">
+        
+        {/* Image Based Disease Prediction */}
         <div className="service-item">
           <div className="service-text">
             <div className="service-header">
@@ -23,6 +25,8 @@ const OurServices = () => {
               symptoms to provide accurate disease identification and treatment recommendations.
             </p>
           </div>
+
+          {/* Crop Disease Detection */}
           <div className="service-image">
             <img
               src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
@@ -31,28 +35,30 @@ const OurServices = () => {
           </div>
         </div>
 
-        <div className="service-item reverse">
-          <div className="service-image">
-            <img
-              src="https://res.cloudinary.com/dx2ttgkba/image/upload/v1747338835/crop_recommendation_pkpw59.png"
-              alt="Crop Recommendation"
-            />
-          </div>
-          <div className="service-text">
-            <div className="service-header">
-              <LineChart className="service-icon" />
-              <a href="/recommend_crop" className="service-title">
-                <h2>Crop Recommendation</h2>
-              </a>
+          {/* Crop Recommendation */}
+          <div className="service-item reverse">
+            <div className="service-image">
+              <img
+                src="https://res.cloudinary.com/dx2ttgkba/image/upload/v1747338835/crop_recommendation_pkpw59.png"
+                alt="Crop Recommendation"
+              />
             </div>
-            <p className="service-description">
-              Crop recommendation systems assist farmers in selecting the most suitable crops
-              based on soil type, climate, water availability, and market demand. By analyzing
-              historical data and weather patterns, these systems provide personalized suggestions.
-            </p>
+            <div className="service-text">
+              <div className="service-header">
+                <LineChart className="service-icon" />
+                <a href="/recommend_crop" className="service-title">
+                  <h2>Crop Recommendation</h2>
+                </a>
+              </div>
+              <p className="service-description">
+                Crop recommendation systems assist farmers in selecting the most suitable crops
+                based on soil type, climate, water availability, and market demand. By analyzing
+                historical data and weather patterns, these systems provide personalized suggestions.
+              </p>
+            </div>
           </div>
-        </div>
 
+          {/* Inter Cropping */}
         <div className="service-item reverse">
           <div className="service-image">
             <img
@@ -73,6 +79,7 @@ const OurServices = () => {
           </div>
         </div>
 
+          {/* General Info About Crops */}
         <div className="service-item">
           <div className="service-text">
             <div className="service-header">
