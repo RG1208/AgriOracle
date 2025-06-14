@@ -1,17 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-interface NavbarProps {
-  logo: React.ReactNode;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ logo }) => {
+const Navbar: React.FC = () => {
   return (
     <nav className="bg-[#2F4F3F] text-white px-4 py-4 font-sans">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo and Title */}
         <Link to="/" className="flex items-center text-white no-underline">
-          {logo}
+          <img src="Images/Logo.png" alt="Logo" className="h-12 w-auto" />
           <span className="ml-2 text-xl font-bold">AGRI ORACLE</span>
         </Link>
 

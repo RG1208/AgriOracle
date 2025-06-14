@@ -14,7 +14,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar logo={undefined} />
+        <Navbar/>
 
         <div className="content">
           <Routes>
