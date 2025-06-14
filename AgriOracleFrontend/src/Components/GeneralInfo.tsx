@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Plane as Plant, Sun, Bug } from 'lucide-react';
-import './GeneralInfo.css';
+
+type CropKey = 'wheat' | 'rice' | 'corn';
 
 const GeneralInfo = () => {
-  const [selectedCrop, setSelectedCrop] = useState('wheat');
+  const [selectedCrop, setSelectedCrop] = useState<CropKey>('wheat');
 
-  const cropInfo = {
+  const cropInfo: Record<CropKey, {
+    title: string;
+    description: string;
+    growingRequirements: string[];
+    fertilizerNeeds: string[];
+    commonDiseases: string[];
+  }> = {
     wheat: {
       title: 'Wheat',
       description:
@@ -75,65 +82,63 @@ const GeneralInfo = () => {
   const crop = cropInfo[selectedCrop];
 
   return (
-    <div className="container mx-auto px-4 py-16">
+    <div className="max-w-5xl mx-auto px-4 py-16">
       <h1 className="text-4xl font-bold text-center mb-12">GENERAL INFO ABOUT CROPS</h1>
 
-      <div className="max-w-4xl mx-auto">
-        <div className="mb-8">
-          <label className="block text-lg font-medium mb-2">Select a Crop</label>
-          <select
-            value={selectedCrop}
-            onChange={(e) => setSelectedCrop(e.target.value)}
-            className="w-full p-2 border rounded-md"
-          >
-            <option value="wheat">Wheat</option>
-            <option value="rice">Rice</option>
-            <option value="corn">Corn</option>
-          </select>
-        </div>
+      <div className="mb-8 bg-gray-50 p-6 rounded-lg shadow-md">
+        <label className="block text-lg font-medium mb-2">Select a Crop</label>
+        <select
+          value={selectedCrop}
+          onChange={(e) => setSelectedCrop(e.target.value as CropKey)}
+          className="w-full p-3 border border-gray-300 rounded-md text-base focus:outline-none focus:ring-2 focus:ring-green-700"
+        >
+          <option value="wheat">Wheat</option>
+          <option value="rice">Rice</option>
+          <option value="corn">Corn</option>
+        </select>
+      </div>
 
-        <div className="bg-white p-8 rounded-lg shadow-md">
-          <h2 className="text-3xl font-bold mb-6 text-[#2F4F3F]">{crop.title}</h2>
+      <div className="bg-white p-8 rounded-lg shadow-md text-gray-700">
+        <h2 className="text-3xl font-bold mb-6 text-green-900">{crop.title}</h2>
 
-          <p className="mb-8 text-gray-700">{crop.description}</p>
+        <p className="mb-8">{crop.description}</p>
 
-          <div className="space-y-8">
-            <section>
-              <h3 className="text-xl font-semibold mb-4 flex items-center">
-                <Plant className="w-6 h-6 mr-2" />
-                Key Growing Requirements:
-              </h3>
-              <ul className="list-disc pl-8 space-y-2">
-                {crop.growingRequirements.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </section>
+        <div className="space-y-10">
+          <section>
+            <h3 className="text-xl font-semibold mb-4 flex items-center">
+              <Plant className="w-6 h-6 mr-2" />
+              Key Growing Requirements:
+            </h3>
+            <ul className="list-disc pl-6 space-y-2">
+              {crop.growingRequirements.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </section>
 
-            <section>
-              <h3 className="text-xl font-semibold mb-4 flex items-center">
-                <Sun className="w-6 h-6 mr-2" />
-                Fertilizer & Nutrient Needs:
-              </h3>
-              <ul className="list-disc pl-8 space-y-2">
-                {crop.fertilizerNeeds.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </section>
+          <section>
+            <h3 className="text-xl font-semibold mb-4 flex items-center">
+              <Sun className="w-6 h-6 mr-2" />
+              Fertilizer & Nutrient Needs:
+            </h3>
+            <ul className="list-disc pl-6 space-y-2">
+              {crop.fertilizerNeeds.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </section>
 
-            <section>
-              <h3 className="text-xl font-semibold mb-4 flex items-center">
-                <Bug className="w-6 h-6 mr-2" />
-                Common Diseases & Pests:
-              </h3>
-              <ul className="list-disc pl-8 space-y-2">
-                {crop.commonDiseases.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </section>
-          </div>
+          <section>
+            <h3 className="text-xl font-semibold mb-4 flex items-center">
+              <Bug className="w-6 h-6 mr-2" />
+              Common Diseases & Pests:
+            </h3>
+            <ul className="list-disc pl-6 space-y-2">
+              {crop.commonDiseases.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </section>
         </div>
       </div>
     </div>
