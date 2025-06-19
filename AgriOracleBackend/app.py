@@ -95,6 +95,10 @@ cure_recommendations = {
 def index():
     return jsonify({'message': 'AgriOracle backend is running ✅'})
 
+@app.route('/test', methods=['GET'])
+def test():
+    return jsonify({"message": "API is working!"}), 200
+
 @app.route('/predict_disease', methods=['POST'])
 def predict_disease():
     if 'file' not in request.files or not allowed_file(request.files['file'].filename):
