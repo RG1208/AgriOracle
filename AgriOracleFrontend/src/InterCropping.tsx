@@ -25,7 +25,7 @@ const CropIntercropping = () => {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:5000/recommend_intercrop', {
+      const response = await fetch('https://agrioracle-9akx.onrender.com/recommend_intercrop', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
