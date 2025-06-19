@@ -189,15 +189,33 @@ def recommend_crop():
 def recommend_intercrop():
     try:
         data = request.get_json()
+        print("📥 Received JSON:", data)
+
         primary_crop = data.get("primary_crop", "").capitalize()
         soil_type = data.get("soil_type", "").capitalize()
         season = data.get("season", "").capitalize()
 
-        input_df = pd.DataFrame([[primary_crop, soil_type, season]], columns=["primary_crop", "soil_type", "season"])
-        input_encoded = intercrop_encoder.transform(input_df).toarray()
-        predicted_probs = intercrop_model.predict(input_encoded)
-        predicted_crop = intercrop_y_encoder.inverse_transform(predicted_probs).flatten()[0]
+        print("🌱 Primary Crop:", primary_crop)
+        print("🧱 Soil Type:", soil_type)
+        print("🌤️ Season:", season)
 
+        if not primary_crop or not soil_type or not season:
+            return jsonify({'error': 'Missing or empty fields in request'}), 400
+
+        input_df = pd.DataFrame([[primary_crop, soil_type, season]],
+                                columns=["primary_crop", "soil_type", "season"])
+        print("📄 DataFrame for encoding:\n", input_df)
+
+        input_encoded = intercrop_encoder.transform(input_df).toarray()
+        print("✅ Encoded input:", input_encoded)
+
+        predicted_probs = intercrop_model.predict(input_encoded)
+        print("📊 Prediction probabilities:", predicted_probs)
+
+        predicted_crop = intercrop_y_encoder.inverse_transform(predicted_probs).flatten()[0]
+        print("🌾 Predicted Intercrop:", predicted_crop)
+
+        # Build reasoning
         reasoning = ""
         if primary_crop == "Maize":
             reasoning += "Maize is a heavy feeder; intercropping with legumes like Soybean helps fix nitrogen. "
@@ -221,7 +239,9 @@ def recommend_intercrop():
             "recommended_crop": predicted_crop,
             "reasoning": reasoning
         })
+
     except Exception as e:
+        print("❌ Error in /recommend_intercrop:", str(e))
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
