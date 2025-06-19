@@ -14,6 +14,12 @@ from flask_cors import CORS  # type: ignore
 app = Flask(__name__)
 CORS(app)  # type: ignore
 
+@app.after_request
+def cleanup(response):
+    import gc
+    gc.collect()
+    return response
+
 # Directories
 UPLOAD_FOLDER = 'static/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
