@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify
 import tensorflow as tf
 from keras.models import load_model  # type: ignore
 from keras.preprocessing import image  # type: ignore
@@ -93,7 +93,7 @@ cure_recommendations = {
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return jsonify({'message': 'AgriOracle backend is running ✅'})
 
 @app.route('/predict_disease', methods=['POST'])
 def predict_disease():
