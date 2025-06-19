@@ -10,6 +10,7 @@ import joblib
 import os
 import uuid
 from flask_cors import CORS  # type: ignore
+import pathlib
 
 app = Flask(__name__)
 CORS(app)  # type: ignore
@@ -30,10 +31,15 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+HERE = pathlib.Path(__file__).parent.resolve()
+MODEL1 = HERE / "all_3_classification_mobilenetv2.h5"
+MODEL2 = HERE / "crop_rotation_model.h5"
+MODEL3 = HERE / "intercropping_model.h5"
+
 # Load models
-disease_model = load_model("all_3_classification_mobilenetv2.h5")
-rotation_model = tf.keras.models.load_model("crop_rotation_model.h5")
-intercrop_model = tf.keras.models.load_model("intercropping_model.h5")
+disease_model = load_model(str(MODEL1))
+rotation_model = tf.keras.models.load_model(str(MODEL2)
+intercrop_model = tf.keras.models.load_model(str(MODEL3))
 
 # Load encoders for crop rotation
 encoder = joblib.load("feature_encoder.pkl")
