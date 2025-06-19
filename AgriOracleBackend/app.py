@@ -11,6 +11,8 @@ import os
 import uuid
 from flask_cors import CORS  # type: ignore
 import pathlib
+import socket
+from contextlib import closing
 
 app = Flask(__name__)
 CORS(app)  # type: ignore
@@ -241,5 +243,13 @@ def recommend_intercrop():
         print(f"❌ Error: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
-if __name__ == '__main__':
-    app.run(debug=False)
+def find_free_port():
+    with closing(socket.socket(socket.AF_INET, socket.SOCK_STREAM)) as s:
+        s.bind(('', 0))
+        return s.getsockname()[1]
+
+if __name__ == "__main__":
+    port = find_free_port()
+    print(f"Running on port {port}")
+    app.run(host="0.0.0.0", port=port)
+
