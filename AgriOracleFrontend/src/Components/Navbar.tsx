@@ -7,7 +7,7 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo and Title */}
         <Link to="/" className="flex items-center text-white no-underline">
-          <img src="Images/Logo.png" alt="Logo" className="h-12 w-auto" />
+          <img src="https://res.cloudinary.com/dx2ttgkba/image/upload/v1750323507/Logo_2_lkgep9.png" alt="Logo" className="h-12 w-auto" />
           <span className="ml-2 text-xl font-bold">AGRI ORACLE</span>
         </Link>
 
