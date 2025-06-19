@@ -38,7 +38,7 @@ MODEL3 = HERE / "intercropping_model.h5"
 
 # Load models
 disease_model = load_model(str(MODEL1))
-rotation_model = tf.keras.models.load_model(str(MODEL2)
+rotation_model = tf.keras.models.load_model(str(MODEL2))
 intercrop_model = tf.keras.models.load_model(str(MODEL3))
 
 # Load encoders for crop rotation
