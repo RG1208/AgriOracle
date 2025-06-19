@@ -42,10 +42,10 @@ rotation_model = tf.keras.models.load_model(str(MODEL2))
 intercrop_model = tf.keras.models.load_model(str(MODEL3))
 
 # Load encoders for crop rotation
-encoder = joblib.load("feature_encoder.pkl")
-y_encoder = joblib.load("label_encoder.pkl")
-intercrop_encoder = joblib.load("intercrop_encoder.pkl")
-intercrop_y_encoder = joblib.load("intercrop_label_encoder.pkl")
+encoder = joblib.load(HERE / "feature_encoder.pkl")
+y_encoder = joblib.load(HERE / "label_encoder.pkl")
+intercrop_encoder = joblib.load(HERE / "intercrop_encoder.pkl")
+intercrop_y_encoder = joblib.load(HERE / "intercrop_label_encoder.pkl")
 
 # Class labels for disease detection
 disease_class_labels = [
