@@ -188,34 +188,25 @@ def recommend_crop():
 @app.route('/recommend_intercrop', methods=['POST'])
 def recommend_intercrop():
     try:
+        print("🔍 Step 1: Getting JSON")
         data = request.get_json()
-        print("📥 Received JSON:", data)
 
+        print("🔍 Step 2: Extracting fields")
         primary_crop = data.get("primary_crop", "").capitalize()
         soil_type = data.get("soil_type", "").capitalize()
         season = data.get("season", "").capitalize()
 
-        print("🌱 Primary Crop:", primary_crop)
-        print("🧱 Soil Type:", soil_type)
-        print("🌤️ Season:", season)
+        print("🔍 Step 3: Creating DataFrame")
+        input_df = pd.DataFrame([[primary_crop, soil_type, season]], columns=["primary_crop", "soil_type", "season"])
 
-        if not primary_crop or not soil_type or not season:
-            return jsonify({'error': 'Missing or empty fields in request'}), 400
-
-        input_df = pd.DataFrame([[primary_crop, soil_type, season]],
-                                columns=["primary_crop", "soil_type", "season"])
-        print("📄 DataFrame for encoding:\n", input_df)
-
+        print("🔍 Step 4: Encoding data")
         input_encoded = intercrop_encoder.transform(input_df).toarray()
-        print("✅ Encoded input:", input_encoded)
 
+        print("🔍 Step 5: Predicting with model")
         predicted_probs = intercrop_model.predict(input_encoded)
-        print("📊 Prediction probabilities:", predicted_probs)
-
         predicted_crop = intercrop_y_encoder.inverse_transform(predicted_probs).flatten()[0]
-        print("🌾 Predicted Intercrop:", predicted_crop)
 
-        # Build reasoning
+        print("🔍 Step 6: Creating reasoning")
         reasoning = ""
         if primary_crop == "Maize":
             reasoning += "Maize is a heavy feeder; intercropping with legumes like Soybean helps fix nitrogen. "
@@ -241,7 +232,7 @@ def recommend_intercrop():
         })
 
     except Exception as e:
-        print("❌ Error in /recommend_intercrop:", str(e))
+        print(f"❌ Error: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
